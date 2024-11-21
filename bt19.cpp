@@ -52,6 +52,7 @@ int main()
 	inGTL(a,n);
 	//cau k
 	kiemTra(a,n);
+	//cau l
 	timX(a,n);
 	
 	return 0;
