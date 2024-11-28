@@ -223,8 +223,7 @@ int timX(int a[ROW][COL],int m,int n,int x)
 int timViTriX(int a[ROW][COL],int m,int n,int x)
 {
 
-	printf("\n\nnhap so can tim vi tri: ");
-	scanf("%d",&x);
+    printf("\n GT %d o vi tri:",x);
 	for(int i=0;i<m;i++)
 	{
 		for(int j=0;j<n;j++)
