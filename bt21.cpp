@@ -1,75 +1,80 @@
 #include "stdio.h"
 #define COL 100
 #define ROW 100
+
 void nhap(int a[ROW][COL],int m,int n);
 void xuat(int a[ROW][COL],int m,int n);
 int tong(int a[ROW][COL],int m,int n);
-int tongDong(int a[ROW][COL],int m,int n);
-int tongCot(int a[ROW][COL],int m ,int n);
-int kiemTraDong(int a[ROW][COL],int m,int n);
-int kiemTraCot(int a[ROW][COL],int m,int n);
-void sapGiamDong(int a[ROW][COL],int m,int n);
-int kiemTraGTLe(int a[ROW][COL],int m,int n);
-int timX(int a[ROW][COL],int m,int n);
-int timViTriX(int a[ROW][COL],int m,int n);
-int timGTNNTrenDong(int a[ROW][COL],int m,int n);
-int timGTLNTrenDong(int a[ROW][COL],int m,int n);
-void inSNTDong(int a[ROW][COL],int m, int n);
+int tongDong(int a[ROW][COL],int m,int n,int k);
+int tongCot(int a[ROW][COL],int m ,int n,int k);
+int kiemTraDong(int a[ROW][COL],int m,int n,int k);
+int kiemTraCot(int a[ROW][COL],int m,int n,int k);
+void sapGiamDong(int a[ROW][COL],int m,int n,int k);
+int kiemTraGTLe(int a[ROW][COL],int m,int n,int k);
+int timX(int a[ROW][COL],int m,int n,int x);
+int timViTriX(int a[ROW][COL],int m,int n,int x);
+int timGTNNTrenDong(int a[ROW][COL],int m,int n,int k);
+int timGTLNTrenDong(int a[ROW][COL],int m,int n,int k);
+void inSNTDong(int a[ROW][COL],int m, int n,int k);
 
 int main()
 {
-	int m,n,kq=0;
+	int m,x,n,k,kq=0;
 	int a[ROW][COL];
 	do{
 		printf("nhap so dong & so cot: ");
 		scanf("%d %d",&m,&n);	
 	}while (n<=0||m<=0||m>100||n>100);
-	
+
 		//cau a
 	nhap(a,m,n);
 		//cau b
 	printf("\nMang la:\n");
 	xuat(a,m,n);
+	
+	printf("\n\nnhap  k= ");
+	scanf("%d",&k);
+	
+	printf("\n\nnhap x=: ");
+	scanf("%d",&x);
+	
 		//cau c
 	kq=tong(a,m,n);
 	printf("\nTong Mang la: %d ",kq);
 		 //cau d
-	tongDong(a,m,n);
+	tongDong(a,m,n,k);
 	 	//cau e
-	tongCot(a,m,n);
+	tongCot(a,m,n,k);
 		//cau f
-	kiemTraDong(a,m,n);
+	kiemTraDong(a,m,n,k);
 		//cau g
-	if(	kiemTraCot(a,m,n)==1)
+	if(	kiemTraCot(a,m,n,k)==1)
 	{
-		printf("Cot Co SNT.");
+		printf("\nCot Co SNT.");
 	}else
-		{printf("Cot k co SNT.");}
+		{printf("\nCot k co SNT.");}
 		//cau i
-	if(kiemTraGTLe(a,m,n)==0)
+	if(kiemTraGTLe(a,m,n,k)==0)
 	{
-		printf("cot KHONG co TOAN GT LE");
+		printf("\ncot KHONG co TOAN GT LE");
 	}else
-		if(kiemTraGTLe(a,m,n)==1)
+		if(kiemTraGTLe(a,m,n,k)==1)
 		{
-			printf("Cot CO TOAN GT LE ");
+			printf("\nCot CO TOAN GT LE ");
 		}
 		//cau j 
-	timX(a,m,n);
+	timX(a,m,n,x);
 		//cau k
-	timViTriX(a,m,n);
-		
+	timViTriX(a,m,n,x);
 	    //cau l
-	timGTLNTrenDong(a,m,n);
+	timGTLNTrenDong(a,m,n,k);
 		//cau m
-	 timGTNNTrenDong(a,m,n);
+	 timGTNNTrenDong(a,m,n,k);
 	 	//cau n
-	inSNTDong(a,m,n);
+	inSNTDong(a,m,n,k);
 		//cau h
-	sapGiamDong(a,m,n);
-	
-	
-	
+	sapGiamDong(a,m,n,k);
+
 	return 0;
 }
 void nhap(int a[ROW][COL],int m,int n)
@@ -108,13 +113,9 @@ int tong(int a[ROW][COL],int m,int n)
 	}
 	return s;
 }
-int tongDong(int a[ROW][COL],int m,int n)
+int tongDong(int a[ROW][COL],int m,int n,int k)
 {
-	int k,j,sum=0;
-	do{
-		printf("\nnhap so dong can tinh TONG: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
+	int j,sum=0;
 	
 	for(j=0;j<n;j++)
 	{
@@ -123,71 +124,55 @@ int tongDong(int a[ROW][COL],int m,int n)
 			sum+=a[k][j];
 		}
 	}
-	printf("Tong dong %d la: %d",k,sum);
+	printf("\nTong dong %d la: %d",k,sum);
 	
 }
-int tongCot(int a[ROW][COL],int m ,int n)
+int tongCot(int a[ROW][COL],int m ,int n,int k)
 {
-	int S=0,h;
-	do{
-		printf("\n\nnhap so cot can tinh TONG:  ");
-		scanf("%d",&h);
-	}while (h<0||h>=n);
+	int S=0;
 	{
 		for(int i=0; i< m ;i++)
 	       {
-	       	if(h<n)
-	       	S+=a[i][h];
+	       	if(k<n)
+	       	S+=a[i][k];
 	       }
-    }printf("Tong cot %d la %d",h,S);
+    }printf("\nTong cot %d la %d",k,S);
 }
-int kiemTraDong(int a[ROW][COL],int m,int n)
+int kiemTraDong(int a[ROW][COL],int m,int n,int k)
 {	
-	int k;
-	do{
-		printf("\n\nnhap so dong can kiem tra SO AM : ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
+	
+	
 	for(int j=0;j<n;j++)
 	{
 		if(k<m)
 		{
 			if(a[k][j]<0)
 			{
-				printf("Dong co ton tai so am");break;
+				printf("\nDong co ton tai so am");break;
 			}else
-				{ printf("Dong khong ton tai so am ");break;	}
+				{ printf("\nDong khong ton tai so am ");break;	}
 		}
 	}
-	
 }
-int kiemTraCot(int a[ROW][COL],int m,int n)
+int kiemTraCot(int a[ROW][COL],int m,int n,int k)
 {
-	int h;
-	do{
-		printf("\n\nnhap cot can kiem tra SNT : ");
-		scanf("%d",&h);
-	}while (h<0||h>=n);
+	
 	for(int i=0;i<m;i++)
 	{
-		if(a[i][h]<2)
+		if(a[i][k]<2)
 		{
 			continue;
 		}
-	   if(a[i][h]==2||a[i][h]%2!=0)
+	   if(a[i][k]==2||a[i][k]%2!=0)
 		{
 			return 1;
 		}
 	}	
 }
-void sapGiamDong(int a[ROW][COL],int m,int n)
+void sapGiamDong(int a[ROW][COL],int m,int n,int k)
 {
-	int k,tmp[10][10];
-	do{
-		printf("\n\nnhap dong can sap giam: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
-	printf("dong sau khi sap giam: ");
+	int tmp[10][10];
+	printf("\ndong sau khi sap giam: ");
 	
 	for(int j=0;j<n-1;j++)
 	{
@@ -209,13 +194,9 @@ void sapGiamDong(int a[ROW][COL],int m,int n)
 	
 		
 	}
-int kiemTraGTLe(int a[ROW][COL],int m,int n)
+int kiemTraGTLe(int a[ROW][COL],int m,int n,int k)
 {
-	int k;
-	do{
-		printf("\n\nnhap cot can kiem tra GT LE: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
+	
 	for(int i=0;i<m;i++)
 	{
 		if(a[i][k]%2==0)
@@ -225,26 +206,22 @@ int kiemTraGTLe(int a[ROW][COL],int m,int n)
 	}
 	return 1;
 }
-int timX(int a[ROW][COL],int m,int n)
+int timX(int a[ROW][COL],int m,int n,int x)
 {
-	int x;
 
-	printf("\n\nnhap so can tim: ");
-	scanf("%d",&x);
 	for(int i=0;i<m;i++)
 	{
 		for(int j=0;j<n;j++)
 		{
 			if(a[i][j]==x)
 			{
-				printf("CO gia tri trong mang!");break;	
+				printf("\nCO gia tri trong mang!");break;	
 			}
 		}
 	}
 }
-int timViTriX(int a[ROW][COL],int m,int n)
+int timViTriX(int a[ROW][COL],int m,int n,int x)
 {
-	int x;
 
 	printf("\n\nnhap so can tim vi tri: ");
 	scanf("%d",&x);
@@ -259,13 +236,10 @@ int timViTriX(int a[ROW][COL],int m,int n)
 		}
 	}
 }
-int timGTNNTrenDong(int a[ROW][COL],int m,int n)
+int timGTNNTrenDong(int a[ROW][COL],int m,int n,int k)
 {
-	int k,min=a[k][0];
-	do{
-		printf("\n\nnhap so dong can tim GTNN: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
+	int min=a[k][0];
+	
 	for(int j=0;j<n;j++)
 	{
 		if(min>a[k][j])
@@ -273,15 +247,11 @@ int timGTNNTrenDong(int a[ROW][COL],int m,int n)
 			min=a[k][j];
 		}
 	}
-	printf("GTNN trong dong la: %d",min);
+	printf("\nGTNN trong dong la: %d",min);
 }
-int timGTLNTrenDong(int a[ROW][COL],int m,int n)
+int timGTLNTrenDong(int a[ROW][COL],int m,int n,int k)
 {
-	int k,max=a[k][0];
-	do{
-		printf("\n\nnhap so dong can tim GTLN: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
+	int max=a[k][0];
 	for(int j=0;j<n;j++)
 	{
 		if(max<a[k][j])
@@ -289,16 +259,11 @@ int timGTLNTrenDong(int a[ROW][COL],int m,int n)
 			max=a[k][j];
 		}
 	}
-	printf("GTNN trong dong la: %d",max);
+	printf("\nGTNN trong dong la: %d",max);
 }
-void inSNTDong(int a[ROW][COL],int m, int n)
+void inSNTDong(int a[ROW][COL],int m, int n,int k)
 {
-	int k;
-	do{
-		printf("\n\nnhap so dong can tim SNT: ");
-		scanf("%d",&k);
-	}while (k<0||k>=m);
-	printf("SNT trong dong la: ");
+	printf("\nSNT trong dong la: ");
 	for(int j=0;j<n;j++)
 	{
 		
@@ -312,7 +277,6 @@ void inSNTDong(int a[ROW][COL],int m, int n)
 		}
 	}
 }
-
 
 
 
