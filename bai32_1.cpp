@@ -21,8 +21,8 @@ void nhapSP(SP*sp);
 void xuatSP(SP*sp);
 void nhapDSSP(SP* list, int n);
 void xuatDSSP(SP* list, int n);
-void timMa(char masp[],int n,SP *arr );
-void timTen(char tensp[],int n,SP *arr);
+void timMa(char masp[],int n,SP* list );
+void timTen(char tensp[],int n,SP* list);
 void sapGiamDonGia(int n,SP *arr);
 
 int main()
@@ -67,18 +67,18 @@ int main()
 	xuatDSSP(sp,n);
 	
 	printf("\nsau khi sap giam don gia: ");
-	sapGiamDonGia(n,arr);
+	sapGiamDonGia(n,sp);
 	xuatDSSP(sp,n);
 	
 	printf("\nnhap ma can tim: ");
 	fflush(stdin);
 	gets(masp);
-	timMa(masp,n,arr);
+	timMa(masp,n,sp);
 	
 	printf("\nnhap ten can tim: ");
 	fflush(stdin);
 	gets(tensp);
-	timTen(tensp,n,arr);
+	timTen(tensp,n,sp);
 	
 	free(sp);
 	return 0;
@@ -92,7 +92,7 @@ void nhapDSSP(SP* list, int n)
 		nhapSP(list+i);
 	}
 }
-void xuatDSSP(SP* list, int n )
+void xuatDSSP(SP* list ,int n )
 {
 	int i;
 	for(i = 0; i<n; i++)
@@ -146,35 +146,35 @@ void xuatNgay(NGAY *d)
 {
 	printf("%d/%d/%d", d->ngay, d->thang, d->nam);
 }
-void timMa(char masp[],int n,SP *arr)
+void timMa(char masp[],int n,SP* list)
 {
 	for(int i=0;i<n;i++)
 	{
-		if (strcmp(arr[i].ma,masp)==0)
-			xuatSP(&arr[i]);
+		if(strcmp(list[i].ma,masp)==0)
+			xuatSP(list +i);
 	}
 }
-void timTen(char tensp[],int n,SP *arr)
+void timTen(char tensp[],int n,SP* list)
 {
 	for(int i=0;i<n;i++)
 	{
-		if (strcmp(arr[i].ten,tensp)==0)
-		xuatSP(&arr[i]);
+ 		if(strcmp(list[i].ten,tensp)==0)
+			xuatSP(list +i);
 	}
 }
 
-void sapGiamDonGia(int n,SP *arr)
+void sapGiamDonGia(int n,SP* list)
 {
 	SP tmp;
 	for(int i=0;i<n-1;i++)
 	{
 		for(int j=i+1;j<n;j++)
 		{
-			if(arr[i].dongia<arr[j].dongia)
+			if(list[i].dongia<list[j].dongia)
 			{
-				tmp = arr[i];
-				arr[i]=arr[j];
-				arr[j]=tmp;
+				tmp = list[i];
+				list[i]=list[j];
+				list[j]=tmp;
 			}
 		}		
 	}
