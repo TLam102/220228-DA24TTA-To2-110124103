@@ -12,7 +12,6 @@ main()
 	if(fp==NULL)
 	{
 		printf("\nLoi mo file");
-		
 	}
 	else
 	{
@@ -21,8 +20,6 @@ main()
 		{
 			fprintf(fp,"%2d",a[i]);
 		}
-	
 		fclose(fp);
 	}
-
 }
